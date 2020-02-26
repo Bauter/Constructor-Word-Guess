@@ -8,25 +8,23 @@ function Word(word) {
         return new Letter(character);
     });
 
-    // check if each element is visible of hidden
-    this.checkDisplay = function(){
-        return letterArry.forEach(function(element) {
-            return element.display();
-        });
-    };
-
     // string together elements in 'letterArry'.
-    this.string = function() {
+    this.toString = function() {
         return letterArry.join(" ");
     };
 
     // Check elements in letterArry for match to user input
     this.checkGuess = function(userInput) {
-        return letterArray.forEach(function(element) {
-            return element.checkInput(userInput);
-        });
+        if (userInput = /[a-zA-z]/) {
+            return this.letterArray.forEach(function(element) {
+                return element.checkInput(userInput);
+            });
+        } else {
+            console.log(userInput + " Is not a valid character");
+        };
     };
 
-
-
 };
+
+// export Word constructor
+module.exports = Word;
