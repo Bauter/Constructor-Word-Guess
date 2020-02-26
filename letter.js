@@ -9,7 +9,7 @@ function Letter(character) {
         
     this.guessedCorrect = false;
     // A function that returns the underlying character if the letter has been guessed, or a placeholder (like an underscore) if the letter has not been guessed.
-        // ^^ 'this.guessedCorrect' is used to determine which condition to run.
+        // ^^ 'this.guessedCorrect' is used to determine which condition to run. If true, display the character, if not, display the underscore instead.
     this.toString = function() {
         if (this.guessedCorrect === true) {
             return this.character
@@ -18,15 +18,17 @@ function Letter(character) {
         };
     };
     // A function that takes a character as an argument and checks it against the underlying character, updating the stored boolean value to true if it was guessed correctly.
-        // User input ("user" character), is placed into a conditional statement to 
+        // User input ("user inputted/guess" character), is placed into a conditional statement where its value is compared to the character. Its function is to change guessedCorrect to true or false (which will effect the display via 'toString').
     this.checkInput = function(userInput) {
         if (userInput === this.character) {
             this.guessedCorrect = true;
+            return this.guessedCorrect;
         } else {
             //this.guessedCorrect = false;
             return false;
         };
     };
+
    
 
 };
