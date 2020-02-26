@@ -12,18 +12,16 @@ function Letter(character) {
             return "_";
         };
     };
+    // A function that takes a character as an argument and checks it against the underlying character, updating the stored boolean value to true if it was guessed correctly.
+    this.check = function(userInput) {
+        if (userInput === this.character) {
+            this.guessed = true;
+        } else {
+            return false;
+        };
+    }
    
 
-};
-
-// A function that takes a character as an argument and checks it against the underlying character, updating the stored boolean value to true if it was guessed correctly.
-Letter.prototype.check = function(userInput) {
-    if (userInput === this.character) {
-        this.guessed = true;
-    } else {
-        return false;
-    };
-    
 };
 
 // export Letter constructor
