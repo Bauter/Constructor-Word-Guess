@@ -24,10 +24,7 @@ function Letter(character) {
             this.guessedCorrect = true;
             return this.guessedCorrect;
         }
-        // } else {
-        //     //this.guessedCorrect = false;
-        //     return false;
-        // };
+        
         return false;
     };
 

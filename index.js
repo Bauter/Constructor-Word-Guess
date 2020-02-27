@@ -6,6 +6,7 @@ let wordArry = ["javascript", "raspberry", "python", "linux", "github", "node", 
 // Guess count set to 10, giving user 10 guesses. Will be incremented down if guess is wrong.
 let guessCount = 10;
 
+
 // Function to prompt the user if they would like to play the game
 function startPrompt() {
     inquirer.prompt([
@@ -27,6 +28,7 @@ function startPrompt() {
 // Call 'startPrompt' to ask user if they would like to play.
 startPrompt();
 
+
 // Function to start game, pick a random word from wordArry and assign to variable, create a new word object with variable and assign to a new variable to use later.
 function startGame() {
     //let wrongLettersArry= [];
@@ -39,7 +41,7 @@ function startGame() {
 
 // Function using inquirer to ask user to guess a letter
 function guessLetter() {
-    let wrongLettersArry = [];
+    
     return inquirer.prompt([
         {
             type:"input",
@@ -51,40 +53,64 @@ function guessLetter() {
         // store the inquirer answer to a variable.
         let userInput = answer.guess;
         // store the word object 'checkGuess' function to a variable.
-        let choices = wordToGuess.checkGuess(userInput);
-        
+        choice = wordToGuess.checkGuess(userInput);
+       
+        // wordToGuess.winner();
         
         // compare userInput to choices variable
-        if (userInput === choices ) {
+        if (choice) {
             console.log("Correct!");
         } else {
             // If userInput (user guess) is not the same as letter in the word, decrease 'guessCount' by 1, push userInput to wrongLettersArry. Log amount of guesses left.
             console.log("Sorry, try again")
             guessCount--;
-            wrongLettersArry.push(userInput);
             console.log("Guesses left: " + guessCount);
-            console.log(wrongLettersArry);
         };
-        return wordToGuess.toString();
+        //return wordToGuess.toString();
+
+        
     })
 };
 
 // function to allow recursion of "guessLetter" function
 function userGuess() {
-    // Call guessLetter and then run anonymous function containing conditional statement.
-    console.log(wordToGuess.toString());    /* !!! >>> This gets my underscores displayed, are my values not matching? <<< !!! */
-    console.log(wordToGuess)
-    guessLetter().then(function() {
-        // If the guessCount is greater than zero, call userGuess function again (recursion)
-        if (guessCount > 0) {
-            userGuess() //.emitter.setMaxListeners(100);
-        } else {
-            // If guessCount is not greater than 0, call the replay function and console.log game over.
-            console.log("Sorry, out of guesses, game over");
-            replay();
-        };
-    });   
+    
+    console.log(wordToGuess.toString());    // !!! >>> This gets my underscores displayed, 
+   
+    console.log(wordToGuess.letterArry.length);
+    // console.log(wordToGuess)
+
+    if (wordToGuess.checkIfTrue()) {
+        console.log("YOU WON!");
+        replay(); 
+    } else {
+        // Call guessLetter and then run anonymous function containing conditional statement.
+        guessLetter().then(function() {
+            // If the guessCount is greater than zero, call userGuess function again (recursion)
+            if (guessCount > 0) {
+                userGuess() 
+            } else {
+                // If guessCount is not greater than 0, call the replay function and console.log game over.
+                console.log("Sorry, out of guesses, game over");
+                replay();
+            };
+
+        // for (i=0; i < wordToGuess.letterArry.length; i++) {
+        //     if (guessCount > 0 && wordToGuess.letterArry[i] !== false) {
+        //         console.log("YOU WON!");
+        //         replay();
+        //     }
+        // }
+    }); 
+    }  
 }
+
+// function checkResult(){
+//     if (wordToGuess.checkIfTrue()) {
+//         console.log("YOU WON!");
+//         replay(); 
+//     }
+// };
 
 // Function to be called when game is over, using inquirer to ask user if they would like to play again
 function replay() {

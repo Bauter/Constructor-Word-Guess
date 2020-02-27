@@ -15,14 +15,25 @@ function Word(word) {
         return this.letterArry.join(" ");       /* >>> !!! UGH! I cannot get string to display! WHY!!! FIX THIS !!! <<< */ /*UPDATE: issue may be resolved with 'index.js line 75'. */
     };
 
-    // Check elements in letterArry for match to user input // !!! >>> NEEDS FIX, correct guess not registering <<< !!!
+    // Check elements in letterArry for match to user input // !!! >>> NEEDS FIX, correct guess not registering <<< !!! UPDATE: FIXED
     this.checkGuess = function(userInput) {
-        
+        let matchedGuess = false
         // For each element in the array, check the user input compared to the letter object character
         this.letterArry.forEach(function(element) {
-            return element.checkInput(userInput);
+            if (element.checkInput(userInput)) {
+                matchedGuess = true;
+            }
         });    
+        return matchedGuess;
     };
+
+    this.checkIfTrue = function() {
+        
+      return this.letterArry.every(function(element) {
+         return element.guessedCorrect;
+            
+        });
+    };  
 
 };
 
