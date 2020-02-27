@@ -23,10 +23,12 @@ function Letter(character) {
         if (userInput === this.character) {
             this.guessedCorrect = true;
             return this.guessedCorrect;
-        } else {
-            //this.guessedCorrect = false;
-            return false;
-        };
+        }
+        // } else {
+        //     //this.guessedCorrect = false;
+        //     return false;
+        // };
+        return false;
     };
 
    
